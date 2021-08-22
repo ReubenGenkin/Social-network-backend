@@ -1,7 +1,7 @@
 const { User } = require('../models');
 
 const UserController = {
-  // get all pizzas
+  // get all users
   getAllUser(req, res) {
     User.find({})
       .populate({
@@ -17,7 +17,7 @@ const UserController = {
       });
   },
 
-  // get one pizza by id
+  // get one user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({
@@ -32,14 +32,14 @@ const UserController = {
       });
   },
 
-  // createPizza
+  // create user
   createUser({ body }, res) {
     User.create(body)
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
   },
 
-  // update pizza by id
+  // update user by id
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then(dbUserData => {
@@ -52,7 +52,7 @@ const UserController = {
       .catch(err => res.json(err));
   },
 
-  // delete pizza
+  // delete user
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then(dbUserData => res.json(dbUserData))
